@@ -17,9 +17,9 @@ class FamilyStructure:
             {'id': 3, 'first_name': 'Jimmy', 'last_name': last_name, 'age': 5, 'lucky_numbers': [1]}
         ]
         self.next_id = 4
-
+ # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
-        return self.next_id
+        return randint(0, 99999999)
 
     def add_member(self, member):
         if 'id' not in member:
@@ -31,12 +31,6 @@ class FamilyStructure:
     def delete_member(self, id):
         self._members = [member for member in self._members if member['id'] != id]
 
-    def update_member(self, id, member):
-        for i, m in enumerate(self._members):
-            if m['id'] == id:
-                self._members[i] = {**m, **member}
-                return self._members[i]
-        return None
 
     def get_member(self, id):
         for member in self._members:

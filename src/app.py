@@ -53,14 +53,6 @@ def delete_member(id):
         return jsonify({'done': True}), 200
     return jsonify({'message': 'Member not found'}), 404
 
-@app.route('/member/<int:id>', methods=['PUT'])
-def update_member(id):
-    member_data = request.json
-    updated_member = jackson_family.update_member(id, member_data)
-    if updated_member:
-        return jsonify(updated_member), 200
-    return jsonify({'message': 'Member not found'}), 404
-
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
